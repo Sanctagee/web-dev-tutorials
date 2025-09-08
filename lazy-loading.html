@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Course Material for my Students - Lazy Loading & Performance Optimization">
+    <meta name="author" content="Gabriel Chikwendu Nwofoke">
+    <meta name="keywords" content="Frontend Developer, lighthouse, img tag, performance optimization, loading of images, site optimization, HTML, CSS, lazy-loading">
+    <title>Lazy Loading & Performance Optimization</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/lazy-loading.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Lazy Loading & Lighthouse Testing</h1>
+            <p>Optimize your web pages for performance and user experience</p>
+        </header>
+        
+        <main class="content-wrapper">
+            <div class="main-content">
+                <section>
+                    <h2><i class="fas fa-images icon"></i> Lazy Loading</h2>
+                    
+                    <div class="card">
+                        <h3>What is Lazy Loading?</h3>
+                        <p>Lazy loading is a web performance optimization technique that delays the loading of non-critical resources (like images) at page load time. Instead, these resources are loaded at the moment they are needed, typically when they enter the viewport.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>How Lazy Loading Works</h3>
+                        <p>With lazy loading, images are only loaded when they are about to enter the browser's viewport. This means if you have a long page with many images, only the images near the top will load initially. As the user scrolls down, other images load just before they come into view.</p>
+                        
+                        <div class="image-demo">
+                            <img src="https://picsum.photos/400/300?random=1" alt="Demo image 1">
+                            <img src="https://picsum.photos/400/300?random=2" alt="Demo image 2">
+                            <img src="https://picsum.photos/400/300?random=3" alt="Demo image 3">
+                        </div>
+                    </div>
+                    
+                    <div class="comparison">
+                        <div class="comparison-item">
+                            <h4>Without Lazy Loading</h4>
+                            <p><i class="fas fa-times-circle" style="color: #e74c3c;"></i> All images load at once</p>
+                            <p><i class="fas fa-times-circle" style="color: #e74c3c;"></i> Higher initial page load time</p>
+                            <p><i class="fas fa-times-circle" style="color: #e74c3c;"></i> More data usage</p>
+                            <p><i class="fas fa-times-circle" style="color: #e74c3c;"></i> Poor performance on slow connections</p>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <h4>With Lazy Loading</h4>
+                            <p><i class="fas fa-check-circle" style="color: #27ae60;"></i> Images load as needed</p>
+                            <p><i class="fas fa-check-circle" style="color: #27ae60;"></i> Faster initial page load</p>
+                            <p><i class="fas fa-check-circle" style="color: #27ae60;"></i> Reduced data usage</p>
+                            <p><i class="fas fa-check-circle" style="color: #27ae60;"></i> Better performance on all devices</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Implementing Lazy Loading</h3>
+                        <p>Modern browsers support lazy loading natively with the <code>loading="lazy"</code> attribute:</p>
+                        
+                        <div class="code-example">
+                            <pre><code>&lt;!-- Native lazy loading --&gt;
+                    &lt;img src="image.jpg" alt="Description" loading="lazy"&gt;
+
+                    &lt;!-- For iframes --&gt;
+                    &lt;iframe src="content.html" loading="lazy"&gt;&lt;/iframe&gt;
+                    </code></pre>
+                        </div>
+                        
+                        <div class="tip">
+                            <strong>Tip:</strong> You can also implement lazy loading using JavaScript libraries like lazysizes or lozad.js for more advanced functionality and better browser compatibility.
+                        </div>
+                        
+                        <h4>Best Practices:</h4>
+                        <ol>
+                            <li>Use the native <code>loading="lazy"</code> attribute for images and iframes</li>
+                            <li>Set width and height attributes to prevent layout shifts</li>
+                            <li>Provide low-quality image placeholders (LQIP) for better perceived performance</li>
+                            <li>Consider using the Intersection Observer API for custom implementations</li>
+                        </ol>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2><i class="fas fa-tachometer-alt icon"></i> Lighthouse Testing</h2>
+                    
+                    <div class="card">
+                        <h3>What is Lighthouse?</h3>
+                        <p>Lighthouse is an open-source, automated tool for improving the quality of web pages. It audits performance, accessibility, progressive web apps, SEO, and more. Lighthouse is integrated into Chrome DevTools and can also be run from the command line or as a Node module.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Key Lighthouse Metrics</h3>
+                        
+                        <div class="lighthouse-metrics">
+                            <div class="metric">
+                                <h4><i class="fas fa-bolt"></i> Performance</h4>
+                                <p>Measures loading speed, interactivity, and visual stability. Key metrics include First Contentful Paint, Largest Contentful Paint, and Cumulative Layout Shift.</p>
+                            </div>
+                            
+                            <div class="metric">
+                                <h4><i class="fas fa-universal-access"></i> Accessibility</h4>
+                                <p>Checks how accessible your site is to people with disabilities. It looks at elements like ARIA attributes, contrast ratios, and semantic HTML.</p>
+                            </div>
+                            
+                            <div class="metric">
+                                <h4><i class="fas fa-search"></i> SEO</h4>
+                                <p>Evaluates how well your site can be found by search engines. It checks for meta tags, structured data, and mobile-friendliness.</p>
+                            </div>
+                            
+                            <div class="metric">
+                                <h4><i class="fas fa-star"></i> Best Practices</h4>
+                                <p>Looks for modern web development best practices like using HTTPS, correct image aspect ratios, and avoiding deprecated APIs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>How to Run Lighthouse</h3>
+                        <p>You can run Lighthouse directly in Chrome DevTools:</p>
+                        <ol>
+                            <li>Open your website in Chrome</li>
+                            <li>Right-click and select "Inspect" to open DevTools</li>
+                            <li>Go to the "Lighthouse" tab</li>
+                            <li>Select the categories you want to audit</li>
+                            <li>Click "Generate report"</li>
+                        </ol>
+                        
+                        <div class="tip">
+                            <strong>Pro Tip:</strong> For consistent results, run Lighthouse in incognito mode with all browser extensions disabled to prevent interference with the audit.
+                        </div>
+                        
+                        <a href="https://developer.chrome.com/docs/lighthouse/overview/" class="btn">Learn More About Lighthouse</a>
+                    </div>
+                </section>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="card">
+                    <h3><i class="fas fa-lightbulb icon"></i> Benefits of Lazy Loading</h3>
+                    <p><strong>Faster initial load:</strong> Only critical resources are loaded first</p>
+                    <p><strong>Reduced bandwidth:</strong> Saves data for mobile users</p>
+                    <p><strong>Improved performance:</strong> Better user experience, especially on slow connections</p>
+                    <p><strong>Lower hosting costs:</strong> Reduced server load and bandwidth usage</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-wrench icon"></i> Implementation Tips</h3>
+                    <p>1. Use the native <code>loading="lazy"</code> attribute for images and iframes</p>
+                    <p>2. Set width and height attributes to prevent layout shifts</p>
+                    <p>3. Provide low-quality image placeholders (LQIP) for better perceived performance</p>
+                    <p>4. Consider using the Intersection Observer API for custom implementations</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-chart-line icon"></i> Lighthouse Scores</h3>
+                    <p>Lighthouse scores range from 0 to 100:</p>
+                    <p>90-100 (Green): Good</p>
+                    <p>50-89 (Orange): Needs improvement</p>
+                    <p>0-49 (Red): Poor</p>
+                    <p>Aim for scores above 90 in all categories for the best user experience.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-book icon"></i> Additional Resources</h3>
+                    <p><a href="https://web.dev/performance/">Web Performance Optimization Guide</a></p>
+                    <p><a href="https://web.dev/lazy-loading/">Lazy Loading Techniques</a></p>
+                    <p><a href="https://developer.chrome.com/docs/lighthouse/overview/">Advanced Lighthouse Auditing</a></p>
+                    <p><a href="https://developers.google.com/speed/docs/insights/OptimizeImages">Google's Image Optimization Guide</a></p>
+                    <p><a href="https://web.dev/learn/">Web.dev Learn</a></p>
+                    <p><a href="https://web.dev/fast/#optimize-your-images">Image Optimization Best Practices</a></p>
+                </div>
+            </aside>
+        </main>
+        
+        <footer>
+            <strong>Created for my students | &copy; GabbbyTech ♠ 2025 Web Performance Guide ♠ </strong>
+        </footer>
+    </div>
+
+    <script src="scripts/lazy-loading.js" defer></script>
+</body>
+</html>

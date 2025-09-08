@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Web Development Tutorials by Gabriel Chikwendu Nwofoke - Learn HTML, CSS, and Web Performance">
+    <meta name="author" content="Gabriel Chikwendu Nwofoke">
+    <title>Web Development Tutorials | GabbyTech</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="WDD231 Course Homepage - Gabriel Chikwendu Nwofoke">
+    <meta property="og:description" content="Collection of tutorials and resources for my students in Web Development.">
+    <meta property="og:image" content="https://sanctagee.github.io/web-dev-tutorials/images/logo.png">
+    <meta property="og:url" content="https://sanctagee.github.io/web-dev-tutorials/">
+    <meta property="og:type" content="website">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #4a86e8;
+            --secondary-color: #2c3e50;
+            --accent-color: #e8f5e9;
+            --text-color: #333;
+            --light-text: white;
+            --card-bg: white;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            
+            /* Responsive font sizes */
+            --h1-size: clamp(1.8rem, 5vw, 2.8rem);
+            --h2-size: clamp(1.5rem, 4vw, 2rem);
+            --h3-size: clamp(1.2rem, 3vw, 1.5rem);
+            --p-size: clamp(1rem, 2.5vw, 1.1rem);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: clamp(10px, 3vw, 20px);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: clamp(15px, 3vw, 30px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: clamp(20px, 4vw, 40px);
+            padding: clamp(15px, 3vw, 20px);
+        }
+        
+        h1 {
+            font-size: var(--h1-size);
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        h2 {
+            font-size: var(--h2-size);
+            color: var(--primary-color);
+            margin: clamp(15px, 3vw, 25px) 0 clamp(10px, 2vw, 15px);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        h3 {
+            font-size: var(--h3-size);
+            color: var(--secondary-color);
+            margin: clamp(15px, 3vw, 20px) 0 clamp(10px, 2vw, 10px);
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: var(--p-size);
+            line-height: 1.8;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #4a86e8, #2c3e50);
+            color: white;
+            border-radius: var(--border-radius);
+        }
+        
+        .hero h1 {
+            color: white;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+        }
+        
+        .hero p {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .tutorial-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .card-description {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #3a76d8;
+        }
+        
+        .about-section {
+            background: #e8f4fc;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            padding: clamp(15px, 3vw, 20px);
+            margin-top: clamp(20px, 4vw, 40px);
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .tutorials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="hero">
+                <h1>Web Development Tutorials</h1>
+                <p>Comprehensive guides for frontend developers created by Gabriel Chikwendu Nwofoke</p>
+            </div>
+        </header>
+        
+        <main>
+            <h2>Featured Tutorials</h2>
+            
+            <div class="tutorials-grid">
+                <div class="tutorial-card">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="card-title">Understanding the &lt;pre&gt; HTML Tag</h3>
+                        <p class="card-description">Learn how to preserve formatting and display code snippets effectively using the preformatted text tag.</p>
+                        <a href="pre-tag.html" class="btn">View Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-font"></i>
+                        </div>
+                        <h3 class="card-title">ASCII: The Foundation of Digital Text</h3>
+                        <p class="card-description">Explore the American Standard Code for Information Interchange and its role in computing.</p>
+                        <a href="ascii.html" class="btn">View Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="card-title">CSS Selectors Explained</h3>
+                        <p class="card-description">Master CSS selectors including combinators, pseudo-classes, and pseudo-elements.</p>
+                        <a href="css-selectors.html" class="btn">View Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3 class="card-title">Lazy Loading & Lighthouse Testing</h3>
+                        <p class="card-description">Optimize your web pages for performance and user experience with these techniques.</p>
+                        <a href="lazy-loading.html" class="btn">View Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-compress-arrows-alt"></i>
+                        </div>
+                        <h3 class="card-title">CSS Clamp Function Explained</h3>
+                        <p class="card-description">Understand responsive font sizing with clamp() for creating fluid typography.</p>
+                        <a href="clamp-function.html" class="btn">View Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h3 class="card-title">Hidden HTML & CSS Features</h3>
+                        <p class="card-description">Discover powerful but underutilized web development features and techniques.</p>
+                        <a href="hidden-features.html" class="btn">View Tutorial</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-section">
+                <h2>About This Project</h2>
+                <p>This collection of tutorials was created by Gabriel Chikwendu Nwofoke (GabbyTech) for students learning web development. Each tutorial focuses on practical, essential skills for frontend developers.</p>
+                <p>The materials cover fundamental concepts like ASCII encoding, HTML tags, CSS selectors, performance optimization techniques, and responsive design principles.</p>
+            </div>
+        </main>
+        
+        <footer>
+            <strong>Created for my students | &copy; GabbbyTech ♠ 2025 Web Development Tutorials ♠ </strong>
+        </footer>
+    </div>
+</body>
+</html>

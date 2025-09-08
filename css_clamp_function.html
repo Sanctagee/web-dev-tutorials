@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Course Material for my Students - CSS Clamp Function Explained">
+    <meta name="author" content="Gabriel Chikwendu Nwofoke">
+    <meta name="keywords" content="Clamp, CSS, Frontend Developer, Web Development">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <title>CSS Clamp Function Explained</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/clamp.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CSS Clamp Function Explained</h1>
+            <p>Understanding responsive font sizing with clamp()</p>
+        </header>
+        
+        <main class="content-wrapper">
+            <div class="main-content">
+                <section>
+                    <h2>What is the clamp() Function?</h2>
+                    
+                    <div class="card">
+                        <p>The <code>clamp()</code> CSS function allows you to set a value that is responsive between a defined minimum and maximum size, based on the viewport width. It's particularly useful for creating responsive typography.</p>
+                        
+                        <div class="clamp-formula">
+                            clamp(MIN, PREFERRED, MAX)
+                        </div>
+                        
+                        <div class="clamp-explanation">
+                            <p>The <code>clamp()</code> function takes three parameters:</p>
+                            <ol>
+                                <li><strong>Minimum value</strong>: The smallest possible value</li>
+                                <li><strong>Preferred value</strong>: The value that will be used when possible (usually relative to viewport width)</li>
+                                <li><strong>Maximum value</strong>: The largest possible value</li>
+                            </ol>
+                            <p>The function will use the preferred value unless it falls below the minimum or above the maximum, in which case it will use the minimum or maximum value respectively.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example">
+                            <h3>Font Size Example</h3>
+                            <div class="example-output">
+                                <p style="font-size: clamp(1rem, 2.5vw, 1.1rem);">This text uses clamp() for sizing</p>
+                                <div class="size-demo">
+                                    font-size: clamp(1rem, 2.5vw, 1.1rem)
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="example">
+                            <h3>Heading Example</h3>
+                            <div class="example-output">
+                                <p style="font-size: clamp(1.5rem, 4vw, 2rem);">Responsive Heading</p>
+                                <div class="size-demo">
+                                    font-size: clamp(1.5rem, 4vw, 2rem)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Some Font Size Variables</h2>
+                    
+                    <div class="card">
+                        <p>These are the CSS custom properties a student once asked me about, which use the <code>clamp()</code> function:</p>
+                        
+                        <pre>/* Responsive font sizes */
+--h1-size: clamp(1.8rem, 5vw, 2.8rem);
+--h2-size: clamp(1.5rem, 4vw, 2rem);
+--h3-size: clamp(1.2rem, 3vw, 1.5rem);
+--p-size: clamp(1rem, 2.5vw, 1.1rem);</pre>
+                        
+                        <p>Let's break down what each line does:</p>
+                        
+                        <div class="clamp-explanation">
+                            <p><code>--h1-size: clamp(1.8rem, 5vw, 2.8rem);</code></p>
+                            <ul>
+                                <li><strong>Minimum</strong>: 1.8rem (will never be smaller than this)</li>
+                                <li><strong>Preferred</strong>: 5vw (5% of the viewport width)</li>
+                                <li><strong>Maximum</strong>: 2.8rem (will never be larger than this)</li>
+                            </ul>
+                            <p>This means your h1 elements will scale between 1.8rem and 2.8rem, based on 5% of the viewport width.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-demo">
+                        <h3>Interactive Clamp() Demo</h3>
+                        <p>Adjust the values below to see how clamp() works:</p>
+                        
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label for="min-val">Minimum Value (rem)</label>
+                                <input type="number" id="min-val" value="1.0" step="0.1" min="0.5" max="3">
+                            </div>
+                            
+                            <div class="control-group">
+                                <label for="pref-val">Preferred Value (vw)</label>
+                                <input type="number" id="pref-val" value="2.5" step="0.1" min="1" max="10">
+                            </div>
+                            
+                            <div class="control-group">
+                                <label for="max-val">Maximum Value (rem)</label>
+                                <input type="number" id="max-val" value="1.1" step="0.1" min="1" max="3">
+                            </div>
+                        </div>
+                        
+                        <div class="visualization">
+                            <div class="size-indicator" id="size-indicator" style="width: 50%;">
+                                Current Size
+                            </div>
+                        </div>
+                        
+                        <div class="example-output">
+                            <p id="demo-text">This text size is controlled by clamp()</p>
+                            <div class="size-demo" id="demo-code">
+                                font-size: clamp(1rem, 2.5vw, 1.1rem)
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="card">
+                    <h3>Benefits of Using Clamp()</h3>
+                    <ul class="usage-list">
+                        <li>Creates responsive typography that scales with viewport size</li>
+                        <li>Eliminates the need for multiple media queries for font sizes</li>
+                        <li>Ensures font sizes never become too small or too large</li>
+                        <li>Improves accessibility by maintaining readable text sizes</li>
+                        <li>Provides a smooth scaling experience across devices</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Common Use Cases</h3>
+                    <ul class="usage-list">
+                        <li>Responsive headings and text elements</li>
+                        <li>Spacing and padding that adapts to screen size</li>
+                        <li>Container widths with reasonable limits</li>
+                        <li>Any CSS property that accepts length values</li>
+                        <li>Creating fluid layouts without breakpoints</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Browser Support</h3>
+                    <p>The clamp() function is supported in all modern browsers:</p>
+                    <ul class="usage-list">
+                        <li>Chrome: 79+</li>
+                        <li>Firefox: 75+</li>
+                        <li>Safari: 13.4+</li>
+                        <li>Edge: 79+</li>
+                        <li>Opera: 66+</li>
+                    </ul>
+                    <p>For older browsers, consider using fallbacks with media queries.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Tips for Using Clamp()</h3>
+                    <ul class="usage-list">
+                        <li>Use relative units (rem, em, vw) for best results</li>
+                        <li>Test your values on different screen sizes</li>
+                        <li>Combine with CSS custom properties for maintainability</li>
+                        <li>Consider accessibility - ensure text remains readable</li>
+                        <li>Use for spacing, sizing, and other properties beyond typography</li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+        
+        <footer>
+            <strong>Created for my students | &copy; GabbbyTech ♠ 2025 CSS CLAMP Guide ♠ </strong>
+        </footer>
+    </div>
+
+    <script src="scripts/clamp_function.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Course Material for my Students - HTML & CSS Hidden Gems">
+    <meta name="author" content="Gabriel Chikwendu Nwofoke">
+    <meta name="keywords" content="CSS, Hidden Features, Less-used tags, CSS hidden gems, Frontend Developer, HTML, Web Development">
+    <title>Hidden Gems: Lesser-Known HTML & CSS Features</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Hidden Gems: Lesser-Known HTML & CSS Features</h1>
+            <p>Discover powerful but underutilized web development features</p>
+        </header>
+        
+        <main class="content-wrapper">
+            <div class="main-content">
+                <section>
+                    <h2>Lesser-Known HTML Tags</h2>
+                    
+                    <div class="card">
+                        <p>HTML offers many specialized elements that can improve semantics, accessibility, and functionality.</p>
+                        
+                        <div class="explanation">
+                            <h3>&lt;fieldset&gt; and &lt;legend&gt;</h3>
+                            <p>Group related form elements with a fieldset and provide a caption with legend.</p>
+                            <pre><code>&lt;fieldset&gt;
+    &lt;legend&gt;Personal Information&lt;/legend&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name"&gt;
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email"&gt;
+&lt;/fieldset&gt;</code></pre>
+                            
+                            <div class="example-output">
+                                <fieldset>
+                                    <legend>Personal Information</legend>
+                                    <label for="name">Name:</label>
+                                    <input type="text" id="name" style="margin-right: 15px;">
+                                    <label for="email">Email:</label>
+                                    <input type="email" id="email">
+                                </fieldset>
+                            </div>
+                        </div>
+                        
+                        <div class="explanation">
+                            <h3>&lt;details&gt; and &lt;summary&gt;</h3>
+                            <p>Create a disclosure widget that shows additional information when toggled.</p>
+                            <pre><code>&lt;details&gt;
+    &lt;summary&gt;Click for more information&lt;/summary&gt;
+    &lt;p&gt;This is additional content that appears when expanded.&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+                            
+                            <div class="example-output">
+                                <details>
+                                    <summary>Click for more information</summary>
+                                    <p>This is additional content that appears when expanded. It's great for FAQs, instructions, or any content that doesn't need to be immediately visible.</p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example">
+                            <h3>&lt;meter&gt; Element</h3>
+                            <div class="example-output">
+                                <p>Disk usage:</p>
+                                <meter value="65" min="0" max="100" low="30" high="75" optimum="80">65%</meter>
+                                <p>Temperature:</p>
+                                <meter value="0.8" min="0" max="1" low="0.2" high="0.9" optimum="0.5">80%</meter>
+                                <p><code>&lt;meter value="65" min="0" max="100"&gt;65%&lt;/meter&gt;</code></p>
+                            </div>
+                        </div>
+                        
+                        <div class="example">
+                            <h3>&lt;progress&gt; Element</h3>
+                            <div class="example-output">
+                                <p>Upload progress:</p>
+                                <progress value="45" max="100">45%</progress>
+                                <p>Indeterminate progress:</p>
+                                <progress id="indeterminate-progress"></progress>
+                                <p><code>&lt;progress value="45" max="100"&gt;45%&lt;/progress&gt;</code></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example">
+                            <h3>&lt;abbr&gt; Element</h3>
+                            <div class="example-output">
+                                <p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
+                                <p><abbr title="HyperText Markup Language">HTML</abbr> is the standard markup language for web pages.</p>
+                                <p><code>&lt;abbr title="World Health Organization"&gt;WHO&lt;/abbr&gt;</code></p>
+                            </div>
+                        </div>
+                        
+                        <div class="example">
+                            <h3>&lt;datalist&gt; Element</h3>
+                            <div class="example-output">
+                                <label for="browser">Choose a browser:</label>
+                                <input list="browsers" id="browser" name="browser">
+                                <datalist id="browsers">
+                                    <option value="Chrome">
+                                    <option value="Firefox">
+                                    <option value="Safari">
+                                    <option value="Edge">
+                                    <option value="Opera">
+                                </datalist>
+                                <p><code>&lt;datalist id="browsers"&gt;...&lt;/datalist&gt;</code></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Underutilized CSS Properties</h2>
+                    
+                    <div class="card">
+                        <p>CSS has many powerful properties that are often overlooked but can solve common design challenges.</p>
+                        
+                        <div class="explanation">
+                            <h3>isolation Property</h3>
+                            <p>The <code>isolation</code> property determines whether an element must create a new stacking context.</p>
+                            <pre><code>.isolated-element {
+    isolation: isolate;
+}</code></pre>
+                            
+                            <div class="example-output">
+                                <div class="isolation-demo">
+                                    <p>Normal stacking context (z-index: 2)</p>
+                                    <div style="position: relative; z-index: 2; background: #ffe6cc; padding: 10px; margin: 10px 0;">
+                                        <p>This element has z-index: 2</p>
+                                    </div>
+                                    <div style="position: relative; z-index: 1; background: #d4edda; padding: 10px; margin: -20px 0 0 30px;">
+                                        <p>This element has z-index: 1 but appears on top due to source order</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="isolation-demo isolated">
+                                    <p>With isolation: isolate (creates new stacking context)</p>
+                                    <div style="position: relative; z-index: 2; background: #ffe6cc; padding: 10px; margin: 10px 0;">
+                                        <p>This element has z-index: 2</p>
+                                    </div>
+                                    <div style="position: relative; z-index: 1; background: #d4edda; padding: 10px; margin: -20px 0 0 30px;">
+                                        <p>This element has z-index: 1 but appears below due to isolation</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example">
+                            <h3>Filter Effects</h3>
+                            <div class="example-output">
+                                <div class="demo-controls">
+                                    <div class="control-group">
+                                        <label for="filter-select">Select Filter:</label>
+                                        <select id="filter-select">
+                                            <option value="none">None</option>
+                                            <option value="blur">Blur (5px)</option>
+                                            <option value="brightness">Brightness (150%)</option>
+                                            <option value="contrast">Contrast (200%)</option>
+                                            <option value="grayscale">Grayscale (100%)</option>
+                                            <option value="hue-rotate">Hue Rotate (90deg)</option>
+                                            <option value="invert">Invert (100%)</option>
+                                            <option value="saturate">Saturate (300%)</option>
+                                            <option value="sepia">Sepia (100%)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="filter-demo" id="filter-demo">
+                                    <img src="https://picsum.photos/300/200?random=1" alt="Demo image" style="width: 100%; border-radius: 5px;">
+                                </div>
+                                
+                                <pre><code>.filtered {
+    filter: blur(5px) brightness(1.5);
+}</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="example">
+                            <h3>Transform: Flip</h3>
+                            <div class="example-output">
+                                <div class="demo-controls">
+                                    <div class="control-group">
+                                        <label for="flip-select">Flip Direction:</label>
+                                        <select id="flip-select">
+                                            <option value="none">None</option>
+                                            <option value="horizontal">Horizontal</option>
+                                            <option value="vertical">Vertical</option>
+                                            <option value="both">Both</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="flip-demo" id="flip-demo">
+                                    <img src="https://picsum.photos/300/200?random=2" alt="Demo image" style="width: 100%; border-radius: 5px;">
+                                </div>
+                                
+                                <pre><code>.flipped-horizontal {
+    transform: scaleX(-1);
+}
+.flipped-vertical {
+    transform: scaleY(-1);
+}
+.flipped-both {
+    transform: scale(-1, -1);
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="explanation">
+                            <h3>Dynamic Grid Layouts</h3>
+                            <p>CSS Grid offers powerful layout capabilities beyond basic rows and columns.</p>
+                            <pre><code>.dynamic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}</code></pre>
+                            
+                            <div class="example-output">
+                                <div class="grid-demo" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+                                    <div class="grid-item">Item 1</div>
+                                    <div class="grid-item">Item 2</div>
+                                    <div class="grid-item">Item 3</div>
+                                    <div class="grid-item">Item 4</div>
+                                    <div class="grid-item">Item 5</div>
+                                    <div class="grid-item">Item 6</div>
+                                </div>
+                                
+                                <p><code>repeat(auto-fit, minmax(150px, 1fr))</code> creates as many columns as can fit with a minimum width of 150px.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="card">
+                    <h3>More HTML Gems</h3>
+                    <ul class="usage-list">
+                        <li><code>&lt;output&gt;</code> - Represents the result of a calculation</li>
+                        <li><code>&lt;cite&gt;</code> - Marks a reference to a creative work</li>
+                        <li><code>&lt;code&gt;</code> - Displays a fragment of code</li>
+                        <li><code>&lt;kbd&gt;</code> - Represents keyboard input</li>
+                        <li><code>&lt;samp&gt;</code> - Represents sample output</li>
+                        <li><code>&lt;time&gt;</code> - Represents a specific time or date</li>
+                        <li><code>&lt;mark&gt;</code> - Highlights text for reference</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>More CSS Gems</h3>
+                    <ul class="usage-list">
+                        <li><code>object-fit</code> - Controls how content fits in containers</li>
+                        <li><code>clip-path</code> - Creates clipping regions</li>
+                        <li><code>shape-outside</code> - Wraps content around custom shapes</li>
+                        <li><code>mix-blend-mode</code> - Blends element with background</li>
+                        <li><code>scroll-snap</code> - Creates scroll snapping effects</li>
+                        <li><code>conic-gradient()</code> - Creates circular gradients</li>
+                        <li><code>gap</code> - Controls spacing in grid and flexbox</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Browser Support</h3>
+                    <p>Most modern browsers support these features:</p>
+                    <ul class="usage-list">
+                        <li>Fieldset/Legend: All browsers</li>
+                        <li>Details/Summary: All modern browsers</li>
+                        <li>Meter/Progress: All modern browsers</li>
+                        <li>CSS Isolation: All modern browsers</li>
+                        <li>CSS Filters: All modern browsers</li>
+                        <li>CSS Grid: All modern browsers</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Accessibility Benefits</h3>
+                    <ul class="usage-list">
+                        <li>Semantic HTML improves screen reader experience</li>
+                        <li>Fieldset/legend groups related form elements</li>
+                        <li>Abbr provides explanations for abbreviations</li>
+                        <li>Details/summary creates accessible disclosures</li>
+                        <li>Meter/progress provide accessible status indicators</li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+        
+        <footer>
+            <strong>Created for my students | &copy; GabbbyTech ♠ 2025 Guide to some lesser known HTML & CSS features ♠ </strong>
+        </footer>
+    </div>
+
+    <script>
+        // Interactive demos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter demo
+            const filterSelect = document.getElementById('filter-select');
+            const filterDemo = document.getElementById('filter-demo');
+            
+            filterSelect.addEventListener('change', function() {
+                switch(this.value) {
+                    case 'none': filterDemo.style.filter = 'none'; break;
+                    case 'blur': filterDemo.style.filter = 'blur(5px)'; break;
+                    case 'brightness': filterDemo.style.filter = 'brightness(150%)'; break;
+                    case 'contrast': filterDemo.style.filter = 'contrast(200%)'; break;
+                    case 'grayscale': filterDemo.style.filter = 'grayscale(100%)'; break;
+                    case 'hue-rotate': filterDemo.style.filter = 'hue-rotate(90deg)'; break;
+                    case 'invert': filterDemo.style.filter = 'invert(100%)'; break;
+                    case 'saturate': filterDemo.style.filter = 'saturate(300%)'; break;
+                    case 'sepia': filterDemo.style.filter = 'sepia(100%)'; break;
+                }
+            });
+            
+            // Flip demo
+            const flipSelect = document.getElementById('flip-select');
+            const flipDemo = document.getElementById('flip-demo');
+            
+            flipSelect.addEventListener('change', function() {
+                switch(this.value) {
+                    case 'none': flipDemo.style.transform = 'none'; break;
+                    case 'horizontal': flipDemo.style.transform = 'scaleX(-1)'; break;
+                    case 'vertical': flipDemo.style.transform = 'scaleY(-1)'; break;
+                    case 'both': flipDemo.style.transform = 'scale(-1, -1)'; break;
+                }
+            });
+            
+            // Animate indeterminate progress bar
+            const progressBar = document.getElementById('indeterminate-progress');
+            let progressValue = 0;
+            
+            setInterval(() => {
+                progressValue = (progressValue + 5) % 100;
+                progressBar.value = progressValue;
+            }, 200);
+        });
+    </script>
+</body>
+</html>

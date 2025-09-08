@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Course Material for my Students - Understanding the <pre> HTML Tag">
+    <meta name="author" content="Gabriel Chikwendu Nwofoke">
+    <meta name="keywords" content="Frontend Developer, pre tag, less-frequently used HTML tags, HTML, CSS, ASCII, Web Development">
+    <title>Understanding the &lt;pre&gt; HTML Tag </title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/pre-tag.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Understanding the &lt;pre&gt; HTML Tag</h1>
+            <p>Preserving formatting and displaying code snippets effectively</p>
+        </header>
+        
+        <main class="content-wrapper">
+            <div class="main-content">
+                <section>
+                    <h2>What is the &lt;pre&gt; Tag?</h2>
+                    
+                    <div class="card">
+                        <p>The <code>&lt;pre&gt;</code> tag in HTML defines preformatted text. 
+                            Text within a <code>&lt;pre&gt;</code> element is displayed in a 
+                            fixed-width font (usually Courier), and it preserves both spaces 
+                            and line breaks exactly as they appear in the HTML code.
+                        </p>
+                        
+                        <p>This is particularly useful for displaying:</p>
+                        <ul class="usage-list">
+                            <li>Code snippets</li>
+                            <li>ASCII art</li>
+                            <li>Text-based diagrams</li>
+                            <li>Formatted text where spacing matters</li>
+                            <li>Keyboard input/output examples</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison">
+                        <div class="comparison-item">
+                            <h3>Without &lt;pre&gt; Tag</h3>
+                            <div class="example-output">
+                                <p>This is how text appears without the pre tag:</p>
+                                <p>    Indented text</p>
+                                <p>Line breaks
+                                are not preserved</p>
+                                <p>Spaces     are collapsed</p>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <h3>With &lt;pre&gt; Tag</h3>
+                            <div class="example-output">
+                                <pre>This is how text appears with the pre tag:
+    Indented text
+Line breaks
+are preserved
+Spaces     are maintained</pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Code Examples</h2>
+                    
+                    <div class="card">
+                        <h3>Basic Usage</h3>
+                        <p>Here's a simple example of using the <code>&lt;pre&gt;</code> tag:</p>
+                        
+                        <div class="code-example">
+                            <h4>HTML Code:</h4>
+                            <pre>&lt;pre&gt;
+    This text will
+    preserve all
+    spaces     and
+    line breaks.
+&lt;/pre&gt;</pre>
+                        </div>
+                        
+                        <div class="code-example">
+                            <h4>Output:</h4>
+                            <pre>
+    This text will
+    preserve all
+    spaces     and
+    line breaks.
+</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Displaying Code Snippets</h3>
+                        <p>The <code>&lt;pre&gt;</code> tag is commonly used with the <code>&lt;code&gt;</code> tag to display code snippets:</p>
+                        
+                        <div class="code-example">
+                            <h4>HTML Code:</h4>
+                            <pre>&lt;pre&gt;&lt;code&gt;
+function greet() {
+    console.log("Hey, GabbyTech!");
+}
+&lt;/code&gt;&lt;/pre&gt;</pre>
+                        </div>
+                        
+                        <div class="code-example">
+                            <h4>Output:</h4>
+                            <pre><code>function greet() {
+    console.log("Hey, GabbyTech!");
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="card">
+                    <h3>Key Characteristics</h3>
+                    <ul class="usage-list">
+                        <li>Preserves whitespace and line breaks</li>
+                        <li>Uses a monospaced font by default</li>
+                        <li>Has default margins in most browsers</li>
+                        <li>Can be styled with CSS</li>
+                        <li>Often used with &lt;code&gt; for code blocks</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Best Practices</h3>
+                    <ul class="usage-list">
+                        <li>Use for code snippets and preformatted text</li>
+                        <li>Combine with &lt;code&gt; for semantic markup</li>
+                        <li>Add overflow handling for long lines</li>
+                        <li>Style with CSS to improve readability</li>
+                        <li>Consider accessibility with screen readers</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>CSS Styling Tips</h3>
+                    <pre style="background: #e8f4fc; color: #2c3e50;">pre {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    line-height: 1.5;
+}</pre>
+                </div>
+                
+                <div class="card">
+                    <h3>Browser Support</h3>
+                    <p>The &lt;pre&gt; tag is supported in all browsers:</p>
+                    <ul class="usage-list">
+                        <li>Chrome: All versions</li>
+                        <li>Firefox: All versions</li>
+                        <li>Safari: All versions</li>
+                        <li>Edge: All versions</li>
+                        <li>Opera: All versions</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        
+        <div class="example-container">
+            <div class="example">
+                <h3>ASCII Art Example</h3>
+                <div class="example-output">
+                    <pre>
+        _____
+       /     \
+      | () () |
+       \  ^  /
+        |||||
+        |||||
+    </pre>
+                </div>
+            </div>
+            
+            <div class="example">
+                <h3>Keyboard Input Example</h3>
+                <div class="example-output">
+                    <pre>Press these keys:
+    
+    CTRL + C     - Copy
+    CTRL + V     - Paste
+    CTRL + Z     - Undo
+    CTRL + SHIFT - Switch layout
+</pre>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <strong>Created for my students | &copy; GabbbyTech ♠ 2025 HTML &lt;pre&gt; tag Guide ♠ </strong>
+        </footer>
+    </div>
+</body>
+</html>

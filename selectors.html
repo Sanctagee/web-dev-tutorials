@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Course Material for my Students - CSS Selectors Explained">
+    <meta name="author" content="Gabriel Chikwendu Nwofoke">
+    <meta name="keywords" content="CSS, Selectors, Pseudo-class, Pseudo-element, pseudo-selectors, Frontend Developer, HTML, Web Development">
+    <title>CSS Selectors Explained</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles/selectors.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CSS Selectors Explained</h1>
+            <p>Understanding CSS selectors including combinators and pseudo-selectors</p>
+        </header>
+        
+        <main class="content-wrapper">
+            <div class="main-content">
+                <section>
+                    <h2>Basic Selectors</h2>
+                    
+                    <div class="card">
+                        <p>CSS selectors are patterns used to select the element(s) you want to style. Let's start with the basic selectors:</p>
+                        
+                        <table class="selector-table">
+                            <tr>
+                                <th>Selector</th>
+                                <th>Example</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>Element</td>
+                                <td><code>p</code></td>
+                                <td>Selects all &lt;p&gt; elements</td>
+                            </tr>
+                            <tr>
+                                <td>Class</td>
+                                <td><code>.intro</code></td>
+                                <td>Selects all elements with class="intro"</td>
+                            </tr>
+                            <tr>
+                                <td>ID</td>
+                                <td><code>#header</code></td>
+                                <td>Selects the element with id="header"</td>
+                            </tr>
+                            <tr>
+                                <td>Universal</td>
+                                <td><code>*</code></td>
+                                <td>Selects all elements</td>
+                            </tr>
+                            <tr>
+                                <td>Attribute</td>
+                                <td><code>[target]</code></td>
+                                <td>Selects all elements with a target attribute</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Combinator Selectors</h2>
+                    
+                    <div class="card">
+                        <p>Combinator selectors combine other selectors to target elements based on their relationship to other elements.</p>
+                        
+                        <div class="selector-explanation">
+                            <h3>Descendant Selector (space)</h3>
+                            <p>Matches all elements that are descendants of a specified element.</p>
+                            <pre><code><span class="code-comment">/* Selects all .child elements inside .parent */</span>
+.parent .child {
+    background-color: #ffe6cc;
+}</code></pre>
+                            
+                            <div class="example-output">
+                                <div class="demo-container">
+                                    <div class="parent">
+                                        Parent element
+                                        <div class="child">Child element (selected)</div>
+                                        <div class="nested">
+                                            <div class="child">Nested child (selected)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="selector-explanation">
+                            <h3>Child Selector (&gt;)</h3>
+                            <p>Matches all elements that are direct children of a specified element.</p>
+                            <pre><code><span class="code-comment">/* Selects only direct .direct-child elements of .parent */</span>
+.parent > .direct-child {
+    background-color: #d4edda;
+}</code></pre>
+                            
+                            <div class="example-output">
+                                <div class="demo-container">
+                                    <div class="parent">
+                                        Parent element
+                                        <div class="direct-child">Direct child (selected)</div>
+                                        <div class="nested">
+                                            <div class="direct-child">Nested direct child (not selected)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="selector-explanation">
+                            <h3>Adjacent Sibling Selector (+)</h3>
+                            <p>Matches an element that is immediately after another specific element.</p>
+                            <pre><code><span class="code-comment">/* Selects .adjacent-sibling immediately after .sibling */</span>
+.sibling + .adjacent-sibling {
+    background-color: #f8d7da;
+}</code></pre>
+                            
+                            <div class="example-output">
+                                <div class="demo-container">
+                                    <div class="sibling">Sibling element</div>
+                                    <div class="adjacent-sibling">Adjacent sibling (selected)</div>
+                                    <div class="other">Other element</div>
+                                    <div class="adjacent-sibling">Another adjacent sibling (not selected)</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="selector-explanation">
+                            <h3>General Sibling Selector (~)</h3>
+                            <p>Matches all elements that are next siblings of a specified element.</p>
+                            <pre><code><span class="code-comment">/* Selects all .general-sibling elements after .sibling */</span>
+.sibling ~ .general-sibling {
+    background-color: #cce5ff;
+}</code></pre>
+                            
+                            <div class="example-output">
+                                <div class="demo-container">
+                                    <div class="sibling">Sibling element</div>
+                                    <div class="general-sibling">General sibling (selected)</div>
+                                    <div class="other">Other element</div>
+                                    <div class="general-sibling">Another general sibling (selected)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Pseudo-class Selectors (:)</h2>
+                    
+                    <div class="card">
+                        <p>Pseudo-classes select elements based on their state or position, not just their name or attributes.</p>
+                        
+                        <div class="example-container">
+                            <div class="example">
+                                <h3>User Action States</h3>
+                                <div class="example-output">
+                                    <div class="pseudo-demo demo-box">Hover over me!</div>
+                                    <p>Click and hold to see active state</p>
+                                    <input type="text" placeholder="Focus on me">
+                                </div>
+                            </div>
+                            
+                            <div class="example">
+                                <h3>Structural Positions</h3>
+                                <div class="example-output">
+                                    <ul class="structural-demo">
+                                        <li>First child (bold)</li>
+                                        <li>Even item (pink)</li>
+                                        <li>Odd item (green)</li>
+                                        <li>Even item (pink)</li>
+                                        <li>Last child (italic)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="selector-explanation">
+                            <h3>Common Pseudo-classes</h3>
+                            <pre><code><span class="code-comment">/* User action states */</span>
+a:hover { }        <span class="code-comment">/* When mouse over element */</span>
+a:active { }       <span class="code-comment">/* When element is being activated */</span>
+input:focus { }    <span class="code-comment">/* When element has focus */</span>
+
+<span class="code-comment">/* Structural pseudo-classes */</span>
+li:first-child { } <span class="code-comment">/* First child of its parent */</span>
+li:last-child { }  <span class="code-comment">/* Last child of its parent */</span>
+li:nth-child(2) { }<span class="code-comment">/* Second child of its parent */</span>
+li:nth-child(2n) { }<span class="code-comment">/* Every even child */</span>
+
+<span class="code-comment">/* Form states */</span>
+input:checked { }  <span class="code-comment">/* Checked radio buttons or checkboxes */</span>
+input:disabled { } <span class="code-comment">/* Disabled form elements */</span>
+input:required { } <span class="code-comment">/* Required form elements */</span></code></pre>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Pseudo-element Selectors (::)</h2>
+                    
+                    <div class="card">
+                        <p>Pseudo-elements style specific parts of an element rather than the element itself.</p>
+                        
+                        <div class="example-container">
+                            <div class="example">
+                                <h3>::before and ::after</h3>
+                                <div class="example-output">
+                                    <div class="pseudo-element-demo">This content has pseudo-elements</div>
+                                </div>
+                            </div>
+                            
+                            <div class="example">
+                                <h3>::first-line and ::first-letter</h3>
+                                <div class="example-output">
+                                    <p style="text-align: center;">This is a paragraph that demonstrates the ::first-line and ::first-letter pseudo-elements. The first line will be styled differently, and the first letter will be larger than the rest.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="selector-explanation">
+                            <h3>Common Pseudo-elements</h3>
+                            <pre><code><span class="code-comment">/* Insert content before an element */</span>
+.element::before {
+    content: "Before";
+}
+
+<span class="code-comment">/* Insert content after an element */</span>
+.element::after {
+    content: "After";
+}
+
+<span class="code-comment">/* Style the first line of text */</span>
+p::first-line {
+    font-weight: bold;
+}
+
+<span class="code-comment">/* Style the first letter of text */</span>
+p::first-letter {
+    font-size: 2em;
+    color: red;
+}
+
+<span class="code-comment">/* Style user selection */</span>
+::selection {
+    background: yellow;
+    color: black;
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="card">
+                    <h3>Key Differences</h3>
+                    <ul class="usage-list">
+                        <li><strong>Pseudo-classes (:) </strong> select elements based on state</li>
+                        <li><strong>Pseudo-elements (::) </strong> style specific parts of elements</li>
+                        <li>Modern browsers support both : and :: for pseudo-elements, but :: is preferred</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Selector Specificity</h3>
+                    <p>When multiple selectors target the same element, specificity determines which styles apply:</p>
+                    <ol>
+                        <li>Inline styles (1000 points)</li>
+                        <li>IDs (100 points)</li>
+                        <li>Classes, attributes, pseudo-classes (10 points)</li>
+                        <li>Elements, pseudo-elements (1 point)</li>
+                    </ol>
+                    <p>Higher specificity overrides lower specificity.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Browser Support</h3>
+                    <p>Most modern selectors are supported in all current browsers:</p>
+                    <ul class="usage-list">
+                        <li>Basic selectors: All browsers</li>
+                        <li>Combinator selectors: All browsers</li>
+                        <li>Pseudo-classes: Good support in modern browsers</li>
+                        <li>Pseudo-elements: Good support with :: syntax in modern browsers</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Best Practices</h3>
+                    <ul class="usage-list">
+                        <li>Use classes for reusable styles</li>
+                        <li>Avoid overly specific selectors</li>
+                        <li>Use pseudo-classes for interactive states</li>
+                        <li>Use pseudo-elements for decorative elements</li>
+                        <li>Test selectors across browsers</li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+        
+        <footer>
+            <strong>Created for my students | &copy; GabbbyTech ♠ 2025 CSS Selectors ♠ </strong>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete JavaScript Guide | Web Development Course</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #4a86e8;
+            --secondary-color: #2c3e50;
+            --accent-color: #e8f5e9;
+            --text-color: #333;
+            --light-text: white;
+            --card-bg: white;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            
+            /* Responsive font sizes */
+            --h1-size: clamp(1.8rem, 5vw, 2.8rem);
+            --h2-size: clamp(1.5rem, 4vw, 2rem);
+            --h3-size: clamp(1.2rem, 3vw, 1.5rem);
+            --p-size: clamp(1rem, 2.5vw, 1.1rem);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: clamp(10px, 3vw, 20px);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: clamp(15px, 3vw, 30px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: clamp(20px, 4vw, 40px);
+            padding: clamp(15px, 3vw, 20px);
+        }
+        
+        h1 {
+            font-size: var(--h1-size);
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        h2 {
+            font-size: var(--h2-size);
+            color: var(--primary-color);
+            margin: clamp(15px, 3vw, 25px) 0 clamp(10px, 2vw, 15px);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        h3 {
+            font-size: var(--h3-size);
+            color: var(--secondary-color);
+            margin: clamp(15px, 3vw, 20px) 0 clamp(10px, 2vw, 10px);
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: var(--p-size);
+            line-height: 1.8;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(15px, 3vw, 30px);
+            margin-bottom: clamp(15px, 3vw, 30px);
+        }
+        
+        .main-content {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            padding: clamp(15px, 3vw, 25px);
+            border-radius: var(--border-radius);
+            margin-bottom: clamp(15px, 3vw, 25px);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .explanation {
+            background: #e8f4fc;
+            border-left: 4px solid var(--primary-color);
+            padding: clamp(15px, 3vw, 25px);
+            border-radius: var(--border-radius);
+            margin: clamp(15px, 3vw, 25px) 0;
+        }
+        
+        .example-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(10px, 2vw, 20px);
+            margin: clamp(15px, 3vw, 30px) 0;
+        }
+        
+        .example {
+            flex: 1;
+            min-width: 280px;
+            background: var(--card-bg);
+            padding: clamp(15px, 3vw, 20px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .example h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .example-output {
+            background: #f8f9fa;
+            padding: clamp(10px, 2vw, 15px);
+            border-radius: var(--border-radius);
+            min-height: 150px;
+            border: 1px dashed var(--primary-color);
+        }
+        
+        .interactive-demo {
+            background: var(--card-bg);
+            padding: clamp(15px, 3vw, 25px);
+            border-radius: var(--border-radius);
+            margin: clamp(15px, 3vw, 25px) 0;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .demo-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .control-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .control-group input, .control-group select, .control-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .control-group button {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .control-group button:hover {
+            background: #3a76d8;
+        }
+        
+        .code-editor {
+            background: #2c3e50;
+            color: #fff;
+            padding: clamp(10px, 2vw, 20px);
+            border-radius: var(--border-radius);
+            margin: clamp(15px, 3vw, 20px) 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            tab-size: 4;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+        }
+        
+        .code-editor code {
+            font-family: 'Courier New', monospace;
+        }
+        
+        .btn-run {
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .btn-run:hover {
+            background: #3a76d8;
+        }
+        
+        .output-container {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            border: 1px dashed var(--primary-color);
+            min-height: 100px;
+        }
+        
+        .usage-list {
+            list-style-type: none;
+        }
+        
+        .usage-list li {
+            margin-bottom: 15px;
+            padding: clamp(10px, 2vw, 15px);
+            background: #e8f4fc;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .usage-list li::before {
+            content: "📌";
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            padding-right: .5em;
+        }
+        
+        pre {
+            background: #2c3e50;
+            color: #fff;
+            padding: clamp(10px, 2vw, 20px);
+            border-radius: var(--border-radius);
+            margin: clamp(15px, 3vw, 20px) 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            tab-size: 4;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+        }
+        
+        code {
+            background: #0a6fad;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        footer {
+            text-align: center;
+            padding: clamp(15px, 3vw, 20px);
+            margin-top: clamp(20px, 4vw, 40px);
+            color: var(--secondary-color);
+        }
+        
+        .practice-section {
+            background: #e8f5e9;
+            padding: clamp(15px, 3vw, 25px);
+            border-radius: var(--border-radius);
+            margin: clamp(20px, 4vw, 40px) 0;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .practice-section h3 {
+            color: #2e7d32;
+        }
+        
+        .practice-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .data-type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .data-type-card {
+            background: #e8f4fc;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .data-type-card h4 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 480px) {
+            .example-output {
+                min-height: 120px;
+            }
+            
+            .data-type-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JavaScript Fundamentals: Complete Guide</h1>
+            <p>Learn the core concepts of JavaScript programming from variables to functions</p>
+        </header>
+        
+        <main class="content-wrapper">
+            <div class="main-content">
+                <section>
+                    <h2>Introduction to JavaScript</h2>
+                    
+                    <div class="card">
+                        <p>
+                            JavaScript is a versatile programming language that powers interactive behavior on websites. 
+                            It allows you to create dynamic content, control multimedia, animate images, and much more.
+                        </p>
+                        
+                        <div class="explanation">
+                            <p><strong>Key Characteristics of JavaScript:</strong></p>
+                            <ul>
+                                <li>High-level, interpreted programming language</li>
+                                <li>Dynamic typing</li>
+                                <li>Prototype-based object orientation</li>
+                                <li>First-class functions</li>
+                                <li>Runs on the client-side and server-side (with Node.js)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example">
+                            <h3>Your First JavaScript Code</h3>
+                            <div class="example-output">
+                                <pre><code>// Simple JavaScript example
+console.log("Hello, World!");
+
+// Display alert
+alert("Welcome to JavaScript!");</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="example">
+                            <h3>Where to Write JavaScript</h3>
+                            <div class="example-output">
+                                <p>JavaScript can be added to HTML in three ways:</p>
+                                <ol>
+                                    <li>Inline in HTML elements</li>
+                                    <li>In &lt;script&gt; tags in the head or body</li>
+                                    <li>In external .js files</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Variables and Data Types</h2>
+                    
+                    <div class="card">
+                        <p>
+                            Variables are used to store information that can be referenced and manipulated in a program. 
+                            JavaScript has three ways to declare variables: <code>var</code>, <code>let</code>, and <code>const</code>.
+                        </p>
+                        
+                        <div class="explanation">
+                            <h3>Variable Declaration: Modern Best Practices</h3>
+                            <p>While JavaScript supports <code>var</code>, <code>let</code>, and <code>const</code>, modern best practices recommend:</p>
+                            <ul>
+                                <li>Use <code>const</code> by default for variables that won't be reassigned</li>
+                                <li>Use <code>let</code> when you need to reassign values</li>
+                                <li>Avoid <code>var</code> due to its function-scoping behavior and hoisting issues</li>
+                            </ul>
+                            
+                            <pre><code>// Using const (block-scoped, cannot be reassigned)
+const PI = 3.14159;
+const API_URL = "https://api.example.com";
+
+// Using let (block-scoped, can be reassigned)
+let counter = 0;
+let userName = "John";
+
+// Using var (function-scoped, avoid in modern JS)
+var oldVariable = "Avoid using var";</code></pre>
+                            
+                            <h3>Scope: Function vs Block</h3>
+                            <p><strong>Function Scope:</strong> Variables declared with <code>var</code> are function-scoped, meaning they are accessible anywhere within the function they are declared in.</p>
+                            <p><strong>Block Scope:</strong> Variables declared with <code>let</code> and <code>const</code> are block-scoped, meaning they are only accessible within the block (enclosed by {}) they are declared in.</p>
+                            
+                            <pre><code>// Function scope example
+function functionScopeExample() {
+    if (true) {
+        var functionScoped = "I'm accessible anywhere in this function";
+    }
+    console.log(functionScoped); // Works fine
+}
+
+// Block scope example
+function blockScopeExample() {
+    if (true) {
+        let blockScoped = "I'm only accessible in this block";
+        const alsoBlockScoped = "Me too!";
+    }
+    console.log(blockScoped); // Error: blockScoped is not defined
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>JavaScript Data Types</h3>
+                        <p>JavaScript has dynamic types, meaning the same variable can be used to hold different data types. The language has primitive and object data types.</p>
+                        
+                        <div class="data-type-grid">
+                            <div class="data-type-card">
+                                <h4>String</h4>
+                                <p>Represents textual data. Enclosed in quotes (single or double).</p>
+                                <pre><code>let name = "John";
+let message = 'Hello world!';</code></pre>
+                            </div>
+                            
+                            <div class="data-type-card">
+                                <h4>Number</h4>
+                                <p>Represents both integer and floating-point numbers.</p>
+                                <pre><code>let integer = 42;
+let decimal = 3.14;
+let negative = -15;</code></pre>
+                            </div>
+                            
+                            <div class="data-type-card">
+                                <h4>Boolean</h4>
+                                <p>Represents a logical entity with two values: true or false.</p>
+                                <pre><code>let isActive = true;
+let isCompleted = false;</code></pre>
+                            </div>
+                            
+                            <div class="data-type-card">
+                                <h4>Null</h4>
+                                <p>Represents the intentional absence of any object value.</p>
+                                <pre><code>let emptyValue = null;</code></pre>
+                            </div>
+                            
+                            <div class="data-type-card">
+                                <h4>Undefined</h4>
+                                <p>A variable that has been declared but not assigned a value.</p>
+                                <pre><code>let notAssigned;
+console.log(notAssigned); // undefined</code></pre>
+                            </div>
+                            
+                            <div class="data-type-card">
+                                <h4>BigInt</h4>
+                                <p>Represents integers larger than 2^53 - 1. Created by appending n to the end of an integer.</p>
+                                <pre><code>let bigNumber = 123456789012345678901234567890n;</code></pre>
+                            </div>
+                            
+                            <div class="data-type-card">
+                                <h4>Symbol</h4>
+                                <p>A unique and immutable primitive value that may be used as a property key.</p>
+                                <pre><code>let sym = Symbol('description');
+let sym2 = Symbol('description');
+console.log(sym === sym2); // false</code></pre>
+                            </div>
+                            
+                            <div class="data-type-card">
+                                <h4>Object</h4>
+                                <p>Collections of key-value pairs used to store complex entities.</p>
+                                <pre><code>let person = {
+    name: "Alice",
+    age: 30,
+    isStudent: false
+};</code></pre>
+                            </div>
+                            
+                            <div class="data-type-card">
+                                <h4>Array</h4>
+                                <p>Ordered collections of values, accessed by numerical index.</p>
+                                <pre><code>let colors = ["red", "green", "blue"];
+let numbers = [1, 2, 3, 4, 5];</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-demo">
+                        <h3>Variable Demo</h3>
+                        <p>Try changing the values and see the results:</p>
+                        
+                        <div class="code-editor">
+                            <pre><code>// Change these values
+let message = "Hello, JavaScript!";
+const year = 2023;
+var isLearning = true;
+
+// Display the values
+console.log(message);
+console.log("Year: " + year);
+console.log("Learning: " + isLearning);</code></pre>
+                        </div>
+                        
+                        <button class="btn-run" onclick="runVariableDemo()">Run Code</button>
+                        
+                        <div class="output-container" id="variable-output">
+                            <p>Output will appear here after running the code.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Operators and Expressions</h2>
+                    
+                    <div class="card">
+                        <p>Operators are used to perform operations on variables and values. JavaScript includes various types of operators for different purposes.</p>
+                        
+                        <div class="explanation">
+                            <h3>Types of Operators</h3>
+                            <ul>
+                                <li><strong>Arithmetic Operators:</strong> +, -, *, /, %, ** (exponentiation)</li>
+                                <li><strong>Assignment Operators:</strong> =, +=, -=, *=, /=, %=</li>
+                                <li><strong>Comparison Operators:</strong> ==, ===, !=, !==, >, <, >=, <=</li>
+                                <li><strong>Logical Operators:</strong> &&, ||, !</li>
+                                <li><strong>Ternary Operator:</strong> condition ? expr1 : expr2</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example">
+                            <h3>Arithmetic Operations</h3>
+                            <div class="example-output">
+                                <pre><code>let a = 10;
+let b = 5;
+
+console.log(a + b); // 15
+console.log(a - b); // 5
+console.log(a * b); // 50
+console.log(a / b); // 2
+console.log(a % b); // 0
+console.log(a ** b); // 100000</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="example">
+                            <h3>Comparison Operations</h3>
+                            <div class="example-output">
+                                <pre><code>let x = 5;
+let y = "5";
+
+console.log(x == y); // true (value equality)
+console.log(x === y); // false (strict equality)
+console.log(x != y); // false
+console.log(x !== y); // true
+console.log(x > 3); // true
+console.log(x < 10); // true</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Logical Operators</h3>
+                        <p>Logical operators are used to combine or manipulate boolean values.</p>
+                        
+                        <div class="example-container">
+                            <div class="example">
+                                <h4>AND Operator (&&)</h4>
+                                <p>Returns true if both operands are true.</p>
+                                <pre><code>let hasAccount = true;
+let isLoggedIn = false;
+
+console.log(hasAccount && isLoggedIn); // false
+
+let age = 25;
+let hasLicense = true;
+console.log(age >= 18 && hasLicense); // true</code></pre>
+                            </div>
+                            
+                            <div class="example">
+                                <h4>OR Operator (||)</h4>
+                                <p>Returns true if at least one operand is true.</p>
+                                <pre><code>let hasCreditCard = true;
+let hasPayPal = false;
+
+console.log(hasCreditCard || hasPayPal); // true
+
+let isWeekend = false;
+let isHoliday = true;
+console.log(isWeekend || isHoliday); // true</code></pre>
+                            </div>
+                            
+                            <div class="example">
+                                <h4>NOT Operator (!)</h4>
+                                <p>Returns the opposite boolean value of its operand.</p>
+                                <pre><code>let isLoggedIn = false;
+
+console.log(!isLoggedIn); // true
+
+let isRaining = true;
+console.log(!isRaining); // false</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Ternary Operator</h3>
+                        <p>The ternary operator is a concise way to write conditional statements.</p>
+                        
+                        <div class="explanation">
+                            <p><strong>Syntax:</strong> condition ? expressionIfTrue : expressionIfFalse</p>
+                            
+                            <pre><code>// Traditional if-else statement
+let message;
+let age = 20;
+
+if (age >= 18) {
+    message = "You are an adult";
+} else {
+    message = "You are a minor";
+}
+
+// Equivalent ternary operator
+let message = age >= 18 ? "You are an adult" : "You are a minor";
+
+// More complex example
+let score = 85;
+let grade = score >= 90 ? "A" :
+            score >= 80 ? "B" :
+            score >= 70 ? "C" :
+            score >= 60 ? "D" : "F";
+            
+console.log(grade); // "B"</code></pre>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Control Flow</h2>
+                    
+                    <div class="card">
+                        <p>Control flow statements allow you to control the execution of your code based on conditions and loops.</p>
+                        
+                        <div class="explanation">
+                            <h3>Conditional Statements</h3>
+                            <pre><code>// if statement
+if (condition) {
+  // code to execute if condition is true
+}
+
+// if-else statement
+if (condition) {
+  // code if true
+} else {
+  // code if false
+}
+
+// else-if statement
+if (condition1) {
+  // code if condition1 is true
+} else if (condition2) {
+  // code if condition2 is true
+} else {
+  // code if all conditions are false
+}
+
+// switch statement
+switch(expression) {
+  case value1:
+    // code to execute when expression matches value1
+    break;
+  case value2:
+    // code to execute when expression matches value2
+    break;
+  default:
+    // code to execute if no cases match
+}</code></pre>
+                            
+                            <h3>Looping Statements</h3>
+                            <pre><code>// for loop - when you know how many times to iterate
+for (let i = 0; i < 5; i++) {
+  // code to repeat 5 times
+}
+
+// while loop - when you don't know how many times to iterate
+while (condition) {
+  // code to repeat while condition is true
+}
+
+// do-while loop - executes at least once
+do {
+  // code to execute at least once
+} while (condition);</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Switch Statement Explained</h3>
+                        <p>The switch statement evaluates an expression and executes code based on matching cases.</p>
+                        
+                        <div class="explanation">
+                            <pre><code>let day = 3;
+let dayName;
+
+switch (day) {
+  case 1:
+    dayName = "Monday";
+    break;
+  case 2:
+    dayName = "Tuesday";
+    break;
+  case 3:
+    dayName = "Wednesday";
+    break;
+  case 4:
+    dayName = "Thursday";
+    break;
+  case 5:
+    dayName = "Friday";
+    break;
+  case 6:
+    dayName = "Saturday";
+    break;
+  case 7:
+    dayName = "Sunday";
+    break;
+  default:
+    dayName = "Invalid day";
+}
+
+console.log(dayName); // "Wednesday"</code></pre>
+                            
+                            <p><strong>Important:</strong> The <code>break</code> statement is crucial to prevent "fall-through" where multiple cases execute. The <code>default</code> case runs when no other cases match.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Loop Differences</h3>
+                        
+                        <div class="example-container">
+                            <div class="example">
+                                <h4>For Loop</h4>
+                                <p>Best when you know how many iterations you need.</p>
+                                <pre><code>// Print numbers 1 to 5
+for (let i = 1; i <= 5; i++) {
+  console.log(i);
+}</code></pre>
+                            </div>
+                            
+                            <div class="example">
+                                <h4>While Loop</h4>
+                                <p>Best when you need to loop until a condition changes.</p>
+                                <pre><code>// Count down from 5
+let count = 5;
+while (count > 0) {
+  console.log(count);
+  count--;
+}</code></pre>
+                            </div>
+                            
+                            <div class="example">
+                                <h4>Do-While Loop</h4>
+                                <p>Guarantees at least one execution, even if condition is false.</p>
+                                <pre><code>// Ask for input at least once
+let userInput;
+do {
+  userInput = prompt("Enter yes or no:");
+} while (userInput !== "yes" && userInput !== "no");</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-demo">
+                        <h3>Control Flow Demo</h3>
+                        <p>Try this example with different values:</p>
+                        
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label for="number-input">Enter a number:</label>
+                                <input type="number" id="number-input" value="15">
+                            </div>
+                            
+                            <div class="control-group">
+                                <label for="run-control-demo">Run the code:</label>
+                                <button id="run-control-demo" onclick="runControlFlowDemo()">Check Number</button>
+                            </div>
+                        </div>
+                        
+                        <div class="output-container" id="control-flow-output">
+                            <p>Result will appear here.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="practice-section">
+                        <h3>Practice Questions: Control Flow</h3>
+                        
+                        <div class="practice-question">
+                            <p>1. Write a program to print numbers from 1 to 10 using a for loop.</p>
+                            <div class="code-editor">
+                                <pre><code>// Your code here</code></pre>
+                            </div>
+                            <button class="btn-run" onclick="showAnswer(1)">Show Answer</button>
+                            <div class="output-container" id="answer-1" style="display: none;">
+                                <pre><code>for (let i = 1; i <= 10; i++) {
+  console.log(i);
+}</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="practice-question">
+                            <p>2. Create a program that checks if a user is eligible to vote (age >= 18).</p>
+                            <div class="code-editor">
+                                <pre><code>// Your code here</code></pre>
+                            </div>
+                            <button class="btn-run" onclick="showAnswer(2)">Show Answer</button>
+                            <div class="output-container" id="answer-2" style="display: none;">
+                                <pre><code>let age = 20; // You can change this value
+
+if (age >= 18) {
+  console.log("You are eligible to vote");
+} else {
+  console.log("You are not eligible to vote yet");
+}</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="practice-question">
+                            <p>3. Create a program that prints only even numbers between 1 and 100.</p>
+                            <div class="code-editor">
+                                <pre><code>// Your code here</code></pre>
+                            </div>
+                            <button class="btn-run" onclick="showAnswer(3)">Show Answer</button>
+                            <div class="output-container" id="answer-3" style="display: none;">
+                                <pre><code>for (let i = 1; i <= 100; i++) {
+  if (i % 2 === 0) {
+    console.log(i);
+  }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Functions</h2>
+                    
+                    <div class="card">
+                        <p>Functions are one of the fundamental building blocks in JavaScript. They allow you to package up code for reuse throughout your program.</p>
+                        
+                        <div class="explanation">
+                            <h3>Function Declarations vs Expressions</h3>
+                            <p>JavaScript offers multiple ways to define functions, each with different characteristics:</p>
+                            
+                            <pre><code>// Function declaration (hoisted)
+function add(a, b) {
+  return a + b;
+}
+
+// Function expression (not hoisted)
+const multiply = function(a, b) {
+  return a * b;
+};
+
+// Arrow function (ES6, concise syntax, no own 'this')
+const divide = (a, b) => {
+  return a / b;
+};
+
+// Concise arrow function (implicit return)
+const square = x => x * x;</code></pre>
+                            
+                            <h3>Function Parameters and Arguments</h3>
+                            <p>Functions can accept parameters (listed in the function definition) and arguments (the actual values passed to the function).</p>
+                            
+                            <pre><code>// Parameters with default values
+function greet(name = "Guest", greeting = "Hello") {
+  return `${greeting}, ${name}!`;
+}
+
+console.log(greet()); // "Hello, Guest!"
+console.log(greet("Alice")); // "Hello, Alice!"
+console.log(greet("Bob", "Hi")); // "Hi, Bob!"
+
+// Rest parameters (collect all remaining arguments)
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+
+console.log(sum(1, 2, 3, 4, 5)); // 15</code></pre>
+                            
+                            <h3>Return Values</h3>
+                            <p>Functions can return values using the <code>return</code> statement. If no return is specified, the function returns <code>undefined</code>.</p>
+                            
+                            <pre><code>// Explicit return
+function getFullName(firstName, lastName) {
+  return `${firstName} ${lastName}`;
+}
+
+// Implicit return (arrow functions)
+const getSquare = x => x * x;
+
+// No return (returns undefined)
+function logMessage(message) {
+  console.log(message);
+  // No return statement
+}
+
+let result = logMessage("Hello"); // result is undefined</code></pre>
+                            
+                            <h3>Higher-Order Functions</h3>
+                            <p>Functions that operate on other functions, either by taking them as arguments or by returning them.</p>
+                            
+                            <pre><code>// Function that takes a function as argument
+function repeatOperation(operation, times) {
+  for (let i = 0; i < times; i++) {
+    operation(i);
+  }
+}
+
+repeatOperation(i => console.log(`Iteration ${i}`), 3);
+
+// Function that returns a function
+function createMultiplier(multiplier) {
+  return function(x) {
+    return x * multiplier;
+  };
+}
+
+const double = createMultiplier(2);
+console.log(double(5)); // 10</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-demo">
+                        <h3>Function Demo</h3>
+                        <p>Try this example with different values:</p>
+                        
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label for="num1">First number:</label>
+                                <input type="number" id="num1" value="10">
+                            </div>
+                            
+                            <div class="control-group">
+                                <label for="num2">Second number:</label>
+                                <input type="number" id="num2" value="5">
+                            </div>
+                            
+                            <div class="control-group">
+                                <label for="run-function-demo">Run the code:</label>
+                                <button id="run-function-demo" onclick="runFunctionDemo()">Calculate</button>
+                            </div>
+                        </div>
+                        
+                        <div class="output-container" id="function-output">
+                            <p>Calculation results will appear here.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="practice-section">
+                        <h3>Practice Questions: Functions</h3>
+                        
+                        <div class="practice-question">
+                            <p>1. Write a function that accepts a string and returns the length of the string.</p>
+                            <div class="code-editor">
+                                <pre><code>// Your code here</code></pre>
+                            </div>
+                            <button class="btn-run" onclick="showAnswer(4)">Show Answer</button>
+                            <div class="output-container" id="answer-4" style="display: none;">
+                                <pre><code>function stringLength(str) {
+  return str.length;
+}
+
+// Example usage:
+console.log(stringLength("Hello")); // 5
+console.log(stringLength("JavaScript")); // 10</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="practice-question">
+                            <p>2. Create a program that will calculate figures and apply discounts.</p>
+                            <div class="code-editor">
+                                <pre><code>// Your code here</code></pre>
+                            </div>
+                            <button class="btn-run" onclick="showAnswer(5)">Show Answer</button>
+                            <div class="output-container" id="answer-5" style="display: none;">
+                                <pre><code>function calculateDiscount(price, discountPercent) {
+  let discountAmount = price * (discountPercent / 100);
+  let finalPrice = price - discountAmount;
+  return finalPrice;
+}
+
+// Example usage:
+console.log(calculateDiscount(100, 10)); // 90
+console.log(calculateDiscount(200, 25)); // 150</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Arrays and Objects</h2>
+                    
+                    <div class="card">
+                        <p>Arrays and objects are complex data types that allow you to store collections of data.</p>
+                        
+                        <div class="explanation">
+                            <h3>Arrays</h3>
+                            <p>Arrays are used to store multiple values in a single variable.</p>
+                            <pre><code>// Creating arrays
+let fruits = ["Apple", "Banana", "Orange"];
+let numbers = [1, 2, 3, 4, 5];
+
+// Accessing array elements
+console.log(fruits[0]); // "Apple"
+console.log(fruits.length); // 3
+
+// Array methods
+fruits.push("Mango"); // adds to the end
+fruits.pop(); // removes from the end
+fruits.unshift("Strawberry"); // adds to the beginning
+fruits.shift(); // removes from the beginning</code></pre>
+                            
+                            <h3>Array.slice() vs Array.splice()</h3>
+                            <p>These are two important array methods with different purposes:</p>
+                            
+                            <pre><code>// slice() returns a shallow copy of a portion of an array
+let fruits = ["Apple", "Banana", "Orange", "Mango", "Lemon"];
+let citrus = fruits.slice(1, 3); // ["Banana", "Orange"]
+let lastTwo = fruits.slice(-2); // ["Mango", "Lemon"]
+
+// splice() changes the contents of an array by removing or replacing elements
+let months = ["Jan", "March", "April", "June"];
+months.splice(1, 0, "Feb"); // Inserts at index 1
+// Result: ["Jan", "Feb", "March", "April", "June"]
+
+months.splice(4, 1, "May"); // Replaces 1 element at index 4
+// Result: ["Jan", "Feb", "March", "April", "May"]</code></pre>
+                            
+                            <h3>Objects</h3>
+                            <p>Objects are collections of key-value pairs.</p>
+                            <pre><code>// Creating objects
+let person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30,
+  isStudent: false
+};
+
+// Accessing object properties
+console.log(person.firstName); // "John"
+console.log(person["lastName"]); // "Doe"
+
+// Adding properties
+person.email = "john@example.com";</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example">
+                            <h3>Array Methods</h3>
+                            <div class="example-output">
+                                <pre><code>let numbers = [1, 2, 3, 4, 5];
+
+// map - creates new array
+let doubled = numbers.map(n => n * 2);
+
+// filter - creates filtered array
+let evens = numbers.filter(n => n % 2 === 0);
+
+// reduce - reduces to a single value
+let sum = numbers.reduce((total, n) => total + n, 0);
+
+console.log(doubled); // [2, 4, 6, 8, 10]
+console.log(evens); // [2, 4]
+console.log(sum); // 15</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="example">
+                            <h3>Object Operations</h3>
+                            <div class="example-output">
+                                <pre><code>let car = {
+  make: "Toyota",
+  model: "Camry",
+  year: 2020
+};
+
+// Getting keys
+let keys = Object.keys(car); // ["make", "model", "year"]
+
+// Getting values
+let values = Object.values(car); // ["Toyota", "Camry", 2020]
+
+// Checking if property exists
+console.log("make" in car); // true
+console.log(car.hasOwnProperty("model")); // true</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="practice-section">
+                        <h3>Practice Questions: Arrays</h3>
+                        
+                        <div class="practice-question">
+                            <p>1. Write a program that will find the largest number in an array.</p>
+                            <div class="code-editor">
+                                <pre><code>// Your code here</code></pre>
+                            </div>
+                            <button class="btn-run" onclick="showAnswer(6)">Show Answer</button>
+                            <div class="output-container" id="answer-6" style="display: none;">
+                                <pre><code>function findLargestNumber(arr) {
+  let largest = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > largest) {
+      largest = arr[i];
+    }
+  }
+  return largest;
+}
+
+// Example usage:
+let numbers = [3, 7, 2, 9, 5];
+console.log(findLargestNumber(numbers)); // 9</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="practice-question">
+                            <p>2. Create a program that will check if a number is a prime number.</p>
+                            <div class="code-editor">
+                                <pre><code>// Your code here</code></pre>
+                            </div>
+                            <button class="btn-run" onclick="showAnswer(7)">Show Answer</button>
+                            <div class="output-container" id="answer-7" style="display: none;">
+                                <pre><code>function isPrime(number) {
+  if (number <= 1) return false;
+  if (number === 2) return true;
+  
+  for (let i = 2; i <= Math.sqrt(number); i++) {
+    if (number % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// Example usage:
+console.log(isPrime(7)); // true
+console.log(isPrime(10)); // false
+console.log(isPrime(17)); // true</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Advanced JavaScript Concepts</h2>
+                    
+                    <div class="card">
+                        <h3>Math Object Methods</h3>
+                        <p>JavaScript's Math object provides mathematical constants and functions.</p>
+                        
+                        <div class="example-container">
+                            <div class="example">
+                                <h4>Math.floor()</h4>
+                                <p>Returns the largest integer less than or equal to a number.</p>
+                                <pre><code>console.log(Math.floor(4.7)); // 4
+console.log(Math.floor(8.1)); // 8
+console.log(Math.floor(-3.2)); // -4</code></pre>
+                            </div>
+                            
+                            <div class="example">
+                                <h4>Math.ceil()</h4>
+                                <p>Returns the smallest integer greater than or equal to a number.</p>
+                                <pre><code>console.log(Math.ceil(4.2)); // 5
+console.log(Math.ceil(8.9)); // 9
+console.log(Math.ceil(-3.7)); // -3</code></pre>
+                            </div>
+                            
+                            <div class="example">
+                                <h4>Math.round()</h4>
+                                <p>Returns the value of a number rounded to the nearest integer.</p>
+                                <pre><code>console.log(Math.round(4.5)); // 5
+console.log(Math.round(4.4)); // 4
+console.log(Math.round(-3.7)); // -4</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Array.map() Explained</h3>
+                        <p>The map() method creates a new array with the results of calling a function on every element in the array.</p>
+                        
+                        <div class="explanation">
+                            <pre><code>let numbers = [1, 2, 3, 4, 5];
+
+// Double each number
+let doubled = numbers.map(function(num) {
+  return num * 2;
+});
+// doubled is [2, 4, 6, 8, 10]
+
+// Using arrow function
+let squared = numbers.map(num => num * num);
+// squared is [1, 4, 9, 16, 25]
+
+// Working with objects
+let users = [
+  { name: "Alice", age: 30 },
+  { name: "Bob", age: 25 },
+  { name: "Charlie", age: 35 }
+];
+
+let names = users.map(user => user.name);
+// names is ["Alice", "Bob", "Charlie"]</code></pre>
+                            
+                            <p><strong>Important:</strong> map() does not change the original array, it returns a new array.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="card">
+                    <h3>JavaScript Versions</h3>
+                    <ul class="usage-list">
+                        <li>ES5 (2009) - Added strict mode, JSON support</li>
+                        <li>ES6 (2015) - let/const, arrow functions, classes</li>
+                        <li>ES2016 - Array.includes(), exponentiation operator</li>
+                        <li>ES2017 - Async functions, shared memory</li>
+                        <li>ES2018 - Rest/spread properties, Promise.finally()</li>
+                        <li>ES2019 - Array.flat(), Object.fromEntries()</li>
+                        <li>ES2020 - BigInt, nullish coalescing, optional chaining</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Best Practices</h3>
+                    <ul class="usage-list">
+                        <li>Use const by default, let when needed</li>
+                        <li>Use strict equality (===) instead of (==)</li>
+                        <li>Use descriptive variable and function names</li>
+                        <li>Keep functions small and focused</li>
+                        <li>Always declare variables before use</li>
+                        <li>Avoid using var in modern JavaScript</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Common Pitfalls</h3>
+                    <ul class="usage-list">
+                        <li>Hoisting issues with var declarations</li>
+                        <li>Confusion between == and ===</li>
+                        <li>Forgetting to use "new" with constructors</li>
+                        <li>Modifying objects while iterating over them</li>
+                        <li>Scope issues in callbacks and closures</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Debugging Tips</h3>
+                    <ul class="usage-list">
+                        <li>Use console.log() for basic debugging</li>
+                        <li>Leverage browser developer tools</li>
+                        <li>Use debugger statement for breakpoints</li>
+                        <li>Check for type errors with typeof</li>
+                        <li>Handle errors with try-catch blocks</li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+        
+        <footer>
+            <strong>Created for my students | &copy; GabbbyTech ♠ 2025 JavaScript Fundamentals Guide ♠ </strong>
+        </footer>
+    </div>
+
+    <script>
+        // Interactive demos
+        function runVariableDemo() {
+            let message = "Hello, JavaScript!";
+            const year = 2023;
+            var isLearning = true;
+            
+            let output = `
+                <p><strong>Message:</strong> ${message}</p>
+                <p><strong>Year:</strong> ${year}</p>
+                <p><strong>Learning:</strong> ${isLearning}</p>
+            `;
+            
+            document.getElementById('variable-output').innerHTML = output;
+        }
+        
+        function runControlFlowDemo() {
+            const number = parseInt(document.getElementById('number-input').value);
+            let result = "";
+            
+            if (number > 0) {
+                result = `${number} is positive.`;
+            } else if (number < 0) {
+                result = `${number} is negative.`;
+            } else {
+                result = `${number} is zero.`;
+            }
+            
+            // Check if even or odd
+            if (number % 2 === 0) {
+                result += " It's even.";
+            } else {
+                result += " It's odd.";
+            }
+            
+            document.getElementById('control-flow-output').innerHTML = `<p>${result}</p>`;
+        }
+        
+        function runFunctionDemo() {
+            const num1 = parseInt(document.getElementById('num1').value);
+            const num2 = parseInt(document.getElementById('num2').value);
+            
+            // Function definitions
+            function add(a, b) {
+                return a + b;
+            }
+            
+            const subtract = (a, b) => a - b;
+            const multiply = (a, b) => a * b;
+            const divide = (a, b) => b !== 0 ? a / b : "Cannot divide by zero";
+            
+            let output = `
+                <p><strong>Addition:</strong> ${num1} + ${num2} = ${add(num1, num2)}</p>
+                <p><strong>Subtraction:</strong> ${num1} - ${num2} = ${subtract(num1, num2)}</p>
+                <p><strong>Multiplication:</strong> ${num1} × ${num2} = ${multiply(num1, num2)}</p>
+                <p><strong>Division:</strong> ${num1} ÷ ${num2} = ${divide(num1, num2)}</p>
+            `;
+            
+            document.getElementById('function-output').innerHTML = output;
+        }
+        
+        function showAnswer(questionNum) {
+            const answerDiv = document.getElementById(`answer-${questionNum}`);
+            if (answerDiv.style.display === "none") {
+                answerDiv.style.display = "block";
+            } else {
+                answerDiv.style.display = "none";
+            }
+        }
+        
+        // Run initial demos on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            runVariableDemo();
+        });
+    </script>
+</body>
+</html>

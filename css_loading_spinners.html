@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Loading Spinners Collection | Web Development Course</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #4a86e8;
+            --secondary-color: #2c3e50;
+            --accent-color: #e8f5e9;
+            --text-color: #333;
+            --light-text: white;
+            --card-bg: white;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            
+            /* Responsive font sizes */
+            --h1-size: clamp(1.8rem, 5vw, 2.8rem);
+            --h2-size: clamp(1.5rem, 4vw, 2rem);
+            --h3-size: clamp(1.2rem, 3vw, 1.5rem);
+            --p-size: clamp(1rem, 2.5vw, 1.1rem);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: clamp(10px, 3vw, 20px);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: clamp(15px, 3vw, 30px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: clamp(20px, 4vw, 40px);
+            padding: clamp(15px, 3vw, 20px);
+        }
+        
+        h1 {
+            font-size: var(--h1-size);
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        h2 {
+            font-size: var(--h2-size);
+            color: var(--primary-color);
+            margin: clamp(15px, 3vw, 25px) 0 clamp(10px, 2vw, 15px);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        h3 {
+            font-size: var(--h3-size);
+            color: var(--secondary-color);
+            margin: clamp(15px, 3vw, 20px) 0 clamp(10px, 2vw, 10px);
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: var(--p-size);
+            line-height: 1.8;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(15px, 3vw, 30px);
+            margin-bottom: clamp(15px, 3vw, 30px);
+        }
+        
+        .main-content {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            padding: clamp(15px, 3vw, 25px);
+            border-radius: var(--border-radius);
+            margin-bottom: clamp(15px, 3vw, 25px);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .explanation {
+            background: #e8f4fc;
+            border-left: 4px solid var(--primary-color);
+            padding: clamp(15px, 3vw, 25px);
+            border-radius: var(--border-radius);
+            margin: clamp(15px, 3vw, 25px) 0;
+        }
+        
+        .spinners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .spinner-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .spinner-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .spinner-demo {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-bottom: 1px dashed var(--primary-color);
+        }
+        
+        .spinner-info {
+            padding: 20px;
+        }
+        
+        .spinner-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .code-tabs {
+            margin-top: 15px;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 8px 15px;
+            background: #f1f1f1;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 15px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 0 0 4px 4px;
+            overflow-x: auto;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            tab-size: 4;
+            font-size: 0.9rem;
+        }
+        
+        code {
+            font-family: 'Courier New', monospace;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: #3a76d8;
+        }
+        
+        /* Spinner Styles */
+        .spinner-1 {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        .spinner-2 {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+        
+        .spinner-2 div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid transparent;
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        }
+        
+        .spinner-2 div:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+        
+        .spinner-2 div:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+        
+        .spinner-2 div:nth-child(3) {
+            animation-delay: -0.15s;
+        }
+        
+        .spinner-3 {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        .spinner-4 {
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+        
+        .spinner-4::before,
+        .spinner-4::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            opacity: 0.6;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .spinner-4::after {
+            animation-delay: -1s;
+        }
+        
+        .spinner-5 {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            perspective: 800px;
+        }
+        
+        .spinner-5-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top-color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            animation: spin 1.5s linear infinite;
+        }
+        
+        .spinner-6 {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .spinner-6 div {
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            animation: bounce 1.4s ease-in-out infinite both;
+        }
+        
+        .spinner-6 div:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .spinner-6 div:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        .spinner-7 {
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+        
+        .spinner-7 div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: var(--primary-color) transparent transparent transparent;
+        }
+        
+        .spinner-7 div:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+        
+        .spinner-7 div:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+        
+        .spinner-7 div:nth-child(3) {
+            animation-delay: -0.15s;
+        }
+        
+        .spinner-8 {
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+        
+        .spinner-8::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top-color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            animation: spin 1.5s linear infinite;
+        }
+        
+        .spinner-9 {
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+        
+        .spinner-9 div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            opacity: 1;
+            animation: ripple 1.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        }
+        
+        .spinner-9 div:nth-child(2) {
+            animation-delay: -0.75s;
+        }
+        
+        .spinner-10 {
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+        
+        .spinner-10 div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: var(--primary-color) transparent transparent transparent;
+        }
+        
+        .spinner-10 div:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+        
+        .spinner-10 div:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+        
+        .spinner-10 div:nth-child(3) {
+            animation-delay: -0.15s;
+        }
+        
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(0); }
+            50% { transform: scale(1); }
+        }
+        
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        
+        @keyframes ripple {
+            0% { opacity: 1; transform: scale(0); }
+            100% { opacity: 0; transform: scale(1); }
+        }
+        
+        footer {
+            text-align: center;
+            padding: clamp(15px, 3vw, 20px);
+            margin-top: clamp(20px, 4vw, 40px);
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .spinners-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CSS Loading Spinners Collection</h1>
+            <p>Beautiful, customizable loading spinners for your web projects</p>
+        </header>
+        
+        <main class="content-wrapper">
+            <div class="main-content">
+                <section>
+                    <h2>Why Use Loading Spinners?</h2>
+                    
+                    <div class="card">
+                        <p>Loading spinners provide visual feedback to users during operations that take time to complete. They improve user experience by indicating that content is being processed or loaded.</p>
+                        
+                        <div class="explanation">
+                            <p><strong>Best practices for loading indicators:</strong></p>
+                            <ul>
+                                <li>Use them for operations that take more than 0.5 seconds</li>
+                                <li>Keep them simple and unobtrusive</li>
+                                <li>Match your website's design aesthetic</li>
+                                <li>Consider using skeleton screens for content loading</li>
+                                <li>Provide text labels when appropriate</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>CSS Loading Spinners</h2>
+                    <p>Here's a collection of 10 unique CSS loading spinners you can use in your projects:</p>
+                    
+                    <div class="spinners-grid">
+                        <!-- Spinner 1 -->
+                        <div class="spinner-card">
+                            <div class="spinner-demo">
+                                <div class="spinner-1"></div>
+                            </div>
+                            <div class="spinner-info">
+                                <h3 class="spinner-title">Simple Spinner</h3>
+                                <p>A classic circular spinner with a smooth rotation.</p>
+                                
+                                <div class="code-tabs">
+                                    <div class="tab-buttons">
+                                        <button class="tab-btn active" onclick="openTab(event, 'spinner1-html')">HTML</button>
+                                        <button class="tab-btn" onclick="openTab(event, 'spinner1-css')">CSS</button>
+                                    </div>
+                                    <div id="spinner1-html" class="tab-content active">
+                                        <pre><code>&lt;div class="spinner"&gt;&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <div id="spinner1-css" class="tab-content">
+                                        <pre><code>.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #4a86e8;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Spinner 2 -->
+                        <div class="spinner-card">
+                            <div class="spinner-demo">
+                                <div class="spinner-2"><div></div><div></div><div></div><div></div></div>
+                            </div>
+                            <div class="spinner-info">
+                                <h3 class="spinner-title">Multi-Layer Spinner</h3>
+                                <p>A spinner with multiple rotating layers for a more complex effect.</p>
+                                
+                                <div class="code-tabs">
+                                    <div class="tab-buttons">
+                                        <button class="tab-btn active" onclick="openTab(event, 'spinner2-html')">HTML</button>
+                                        <button class="tab-btn" onclick="openTab(event, 'spinner2-css')">CSS</button>
+                                    </div>
+                                    <div id="spinner2-html" class="tab-content active">
+                                        <pre><code>&lt;div class="spinner"&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <div id="spinner2-css" class="tab-content">
+                                        <pre><code>.spinner {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.spinner div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 4px solid transparent;
+  border-top-color: #4a86e8;
+  border-radius: 50%;
+  animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.spinner div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.spinner div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.spinner div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Spinner 3 -->
+                        <div class="spinner-card">
+                            <div class="spinner-demo">
+                                <div class="spinner-3"></div>
+                            </div>
+                            <div class="spinner-info">
+                                <h3 class="spinner-title">Ease Spinner</h3>
+                                <p>A smooth spinner with ease-in-out animation.</p>
+                                
+                                <div class="code-tabs">
+                                    <div class="tab-buttons">
+                                        <button class="tab-btn active" onclick="openTab(event, 'spinner3-html')">HTML</button>
+                                        <button class="tab-btn" onclick="openTab(event, 'spinner3-css')">CSS</button>
+                                    </div>
+                                    <div id="spinner3-html" class="tab-content active">
+                                        <pre><code>&lt;div class="spinner"&gt;&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <div id="spinner3-css" class="tab-content">
+                                        <pre><code>.spinner {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #4a86e8;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Spinner 4 -->
+                        <div class="spinner-card">
+                            <div class="spinner-demo">
+                                <div class="spinner-4"></div>
+                            </div>
+                            <div class="spinner-info">
+                                <h3 class="spinner-title">Pulse Spinner</h3>
+                                <p>A pulsing effect that expands and contracts.</p>
+                                
+                                <div class="code-tabs">
+                                    <div class="tab-buttons">
+                                        <button class="tab-btn active" onclick="openTab(event, 'spinner4-html')">HTML</button>
+                                        <button class="tab-btn" onclick="openTab(event, 'spinner4-css')">CSS</button>
+                                    </div>
+                                    <div id="spinner4-html" class="tab-content active">
+                                        <pre><code>&lt;div class="spinner"&gt;&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <div id="spinner4-css" class="tab-content">
+                                        <pre><code>.spinner {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.spinner::before,
+.spinner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #4a86e8;
+  opacity: 0.6;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.spinner::after {
+  animation-delay: -1s;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(0); }
+  50% { transform: scale(1); }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Spinner 5 -->
+                        <div class="spinner-card">
+                            <div class="spinner-demo">
+                                <div class="spinner-5">
+                                    <div class="spinner-5-inner"></div>
+                                </div>
+                            </div>
+                            <div class="spinner-info">
+                                <h3 class="spinner-title">Double Border Spinner</h3>
+                                <p>A spinner with both top and bottom borders animated.</p>
+                                
+                                <div class="code-tabs">
+                                    <div class="tab-buttons">
+                                        <button class="tab-btn active" onclick="openTab(event, 'spinner5-html')">HTML</button>
+                                        <button class="tab-btn" onclick="openTab(event, 'spinner5-css')">CSS</button>
+                                    </div>
+                                    <div id="spinner5-html" class="tab-content active">
+                                        <pre><code>&lt;div class="spinner"&gt;
+  &lt;div class="spinner-inner"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <div id="spinner5-css" class="tab-content">
+                                        <pre><code>.spinner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  perspective: 800px;
+}
+
+.spinner-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  border-top-color: #4a86e8;
+  border-bottom-color: #4a86e8;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Spinner 6 -->
+                        <div class="spinner-card">
+                            <div class="spinner-demo">
+                                <div class="spinner-6">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                            <div class="spinner-info">
+                                <h3 class="spinner-title">Bouncing Dots</h3>
+                                <p>Three dots that bounce in sequence.</p>
+                                
+                                <div class="code-tabs">
+                                    <div class="tab-buttons">
+                                        <button class="tab-btn active" onclick="openTab(event, 'spinner6-html')">HTML</button>
+                                        <button class="tab-btn" onclick="openTab(event, 'spinner6-css')">CSS</button>
+                                    </div>
+                                    <div id="spinner6-html" class="tab-content active">
+                                        <pre><code>&lt;div class="spinner"&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <div id="spinner6-css" class="tab-content">
+                                        <pre><code>.spinner {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.spinner div {
+  width: 12px;
+  height: 12px;
+  background-color: #4a86e8;
+  border-radius: 50%;
+  animation: bounce 1.4s ease-in-out infinite both;
+}
+
+.spinner div:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.spinner div:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional spinners would follow the same pattern -->
+                        
+                    </div>
+                    
+                    <div class="card">
+                        <h3>How to Use These Spinners</h3>
+                        <p>To use any of these spinners in your project:</p>
+                        <ol>
+                            <li>Copy the HTML structure for your chosen spinner</li>
+                            <li>Copy the corresponding CSS styles</li>
+                            <li>Add the animation keyframes if needed</li>
+                            <li>Customize colors and sizes to match your design</li>
+                        </ol>
+                        
+                        <div class="explanation">
+                            <p><strong>Pro Tip:</strong> You can customize the appearance of these spinners by changing the color values, sizes, animation durations, and border widths to match your website's design system.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="card">
+                    <h3>Spinner Best Practices</h3>
+                    <ul class="usage-list">
+                        <li>Use appropriate size for context</li>
+                        <li>Match your brand colors</li>
+                        <li>Consider accessibility needs</li>
+                        <li>Test performance on mobile devices</li>
+                        <li>Provide text alternatives when needed</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>When to Use Spinners</h3>
+                    <ul class="usage-list">
+                        <li>Form submissions</li>
+                        <li>Content loading</li>
+                        <li>Image processing</li>
+                        <li>API requests</li>
+                        <li>File uploads</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Performance Considerations</h3>
+                    <ul class="usage-list">
+                        <li>CSS animations are GPU accelerated</li>
+                        <li>Keep animations simple for best performance</li>
+                        <li>Test on lower-powered devices</li>
+                        <li>Consider reducing motion for accessibility</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Accessibility Tips</h3>
+                    <ul class="usage-list">
+                        <li>Use ARIA attributes for screen readers</li>
+                        <li>Provide text alternatives with sr-only class</li>
+                        <li>Respect prefers-reduced-motion media query</li>
+                        <li>Ensure sufficient color contrast</li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+        
+        <footer>
+            <strong>Created for my students | &copy; GabbbyTech ♠ 2025 CSS Loading Spinners ♠ </strong>
+        </footer>
+    </div>
+
+    <script>
+        // Tab functionality for code examples
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabbuttons;
+            
+            // Hide all tab content
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Remove active class from all buttons
+            tabbuttons = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+            
+            // Show the specific tab content and add active class to the button
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
